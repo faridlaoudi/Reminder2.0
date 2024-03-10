@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "bnbAcEGCqXHn4CGtWXK7nIMlWs5YxT4i8p8/MN4o84UQAgg7APOBD9+Lh83F+Gby2ZJPwUcHpx7H/V/51pz8gg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\laoud\\Documents\\project\\reminder1\\reminder1.vbproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\laoud\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\laoud\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
+    "C:\\Users\\laoud\\.nuget\\packages\\system.data.oledb\\8.0.0\\system.data.oledb.8.0.0.nupkg.sha512",
+    "C:\\Users\\laoud\\.nuget\\packages\\system.diagnostics.eventlog\\8.0.0\\system.diagnostics.eventlog.8.0.0.nupkg.sha512",
+    "C:\\Users\\laoud\\.nuget\\packages\\system.diagnostics.performancecounter\\8.0.0\\system.diagnostics.performancecounter.8.0.0.nupkg.sha512",
+    "C:\\Users\\laoud\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
