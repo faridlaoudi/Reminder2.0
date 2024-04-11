@@ -1,7 +1,9 @@
 ﻿Imports System.IO
 Imports Newtonsoft.Json
-
 Public Class Form1
+
+    Private WithEvents notificationTimer As New Timer()
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             LoadTasksFromFile()
@@ -10,6 +12,13 @@ Public Class Form1
             AddHandler MaskedTextBoxDate.TextChanged, AddressOf Input_Changed
             AddHandler MaskedTextBoxTime.TextChanged, AddressOf Input_Changed
             ValidateInputs()
+
+            ' Start the timer
+            notificationTimer.Interval = 60000 ' 1 minute
+            notificationTimer.Start()
+
+            ' Check tasks and display notifications when the form loads
+            CheckAndNotifyTasks()
         Catch ex As Exception
             MsgBox("Error loading data.")
         End Try
@@ -24,9 +33,6 @@ Public Class Form1
         MaskedTextBoxTime.ValidatingType = GetType(System.DateTime) ' Note: This is for simplicity; actual time validation happens in ValidateInputs.
     End Sub
 
-    Private Sub Input_Changed(sender As Object, e As EventArgs)
-        ValidateInputs()
-    End Sub
 
     Private Sub ValidateInputs()
         Dim dateValue As DateTime
@@ -37,6 +43,26 @@ Public Class Form1
         ' Enable the Add button only if all conditions are met
         Add.Enabled = isValidDate AndAlso isValidTime AndAlso isTaskNotEmpty
     End Sub
+
+    Private Sub notificationTimer_Tick(sender As Object, e As EventArgs) Handles notificationTimer.Tick
+        ' Check tasks and display notifications periodically
+        CheckAndNotifyTasks()
+    End Sub
+
+    Private Sub CheckAndNotifyTasks()
+        Dim currentTime As DateTime = DateTime.Now
+        For Each taskItem As TaskItem In checktask.Items
+            Dim taskDateTime As DateTime = DateTime.ParseExact(taskItem.Date1 & " " & taskItem.Time, "dd/MM/yyyy HH:mm", Nothing)
+            If currentTime >= taskDateTime Then
+                MessageBox.Show($"It's time for task: {taskItem.Name}", "Task Notification", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Next
+    End Sub
+
+    Private Sub Input_Changed(sender As Object, e As EventArgs)
+        ValidateInputs()
+    End Sub
+
 
     Private Shadows Sub Add_Click(sender As Object, e As EventArgs) Handles Add.Click
         Dim taskName As String = TextBox1.Text.Trim()
@@ -128,4 +154,13 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
+        Dim currentTime As DateTime = DateTime.Now
+        For Each taskItem As TaskItem In checktask.Items
+            Dim taskDateTime As DateTime = DateTime.ParseExact(taskItem.Date1 & " " & taskItem.Time, "dd/MM/yyyy HH:mm", Nothing)
+            If currentTime = taskDateTime Then
+                MessageBox.Show($"It's time for task: {taskItem.Name}", "Task Notification", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Next
+    End Sub
 End Class

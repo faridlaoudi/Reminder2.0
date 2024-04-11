@@ -22,6 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
         Label2 = New Label()
         Label3 = New Label()
         TextBox1 = New TextBox()
@@ -33,6 +34,7 @@ Partial Class Form1
         Add = New Button()
         MaskedTextBoxTime = New MaskedTextBox()
         exitbtn = New Button()
+        Timer = New Timer(components)
         SuspendLayout()
         ' 
         ' Label2
@@ -136,6 +138,10 @@ Partial Class Form1
         exitbtn.Text = "X"
         exitbtn.UseVisualStyleBackColor = False
         ' 
+        ' Timer
+        ' 
+        Timer.Interval = 60000
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
@@ -171,5 +177,6 @@ Partial Class Form1
     Friend WithEvents Add As Button
     Friend WithEvents MaskedTextBoxTime As MaskedTextBox
     Friend WithEvents exitbtn As Button
+    Friend WithEvents Timer As Timer
 
 End Class
