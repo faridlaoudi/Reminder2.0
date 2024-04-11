@@ -39,25 +39,32 @@ Public Class Form1
     End Sub
 
     Private Shadows Sub Add_Click(sender As Object, e As EventArgs) Handles Add.Click
+        Dim taskName As String = TextBox1.Text.Trim()
+        Dim taskDate As String = MaskedTextBoxDate.Text
+        Dim taskTime As String = MaskedTextBoxTime.Text
+
         ' Since Add button is enabled only when inputs are valid, directly add the task.
-        Dim task As String = TextBox1.Text.Trim()
-        ' Check if the task already exists in the list
-        If Not checktask.Items.Contains(task) Then
-            ' Add the task to the CheckedListBox
-            checktask.Items.Add(task, False)
-            TextBox1.Clear()
-            ' Optionally, save tasks right away or according to your application's flow
-            SaveTasksToFile()
+        If Not String.IsNullOrEmpty(taskName) Then
+            ' Add the new task with date and time
+            Dim newTask As New TaskItem(taskName, False, taskDate, taskTime)
+            ' Check if a similar task already exists (based on Name, Date, and Time)
+            Dim taskExists As Boolean = checktask.Items.Cast(Of TaskItem)().Any(Function(item) item.Name = newTask.Name AndAlso item.Date1 = newTask.Date1 AndAlso item.Time = newTask.Time)
+
+            If Not taskExists Then
+                checktask.Items.Add(newTask, False)
+                TextBox1.Clear()
+                SaveTasksToFile()
+            Else
+                MessageBox.Show("This task with the same date and time has already been added.", "Duplicate Task", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
         Else
-            MessageBox.Show("This task has already been added.", "Duplicate Task", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Please enter a task.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
     Private Sub SaveTasksToFile()
         Dim tasksList As New List(Of TaskItem)
-        For i As Integer = 0 To checktask.Items.Count - 1
-            Dim taskName As String = checktask.Items(i).ToString()
-            Dim isChecked As Boolean = checktask.GetItemChecked(i)
-            tasksList.Add(New TaskItem(taskName, isChecked))
+        For Each item As TaskItem In checktask.Items
+            tasksList.Add(item)
         Next
 
         Dim tasksJson As String = JsonConvert.SerializeObject(tasksList)
@@ -71,7 +78,7 @@ Public Class Form1
 
             checktask.Items.Clear() ' Clear existing items before loading new ones
             For Each taskItem As TaskItem In tasksList
-                checktask.Items.Add(taskItem.Name, taskItem.IsChecked)
+                checktask.Items.Add(taskItem, taskItem.IsChecked)
             Next
         End If
     End Sub
@@ -90,11 +97,23 @@ Public Class Form1
     Public Class TaskItem
         Public Property Name As String
         Public Property IsChecked As Boolean
+        Public Property Date1 As String
+        Public Property Time As String
 
-        Public Sub New(name As String, isChecked As Boolean)
+        Public Sub New(name As String, isChecked As Boolean, [date] As String, time As String)
             Me.Name = name
             Me.IsChecked = isChecked
+            Me.Date1 = [date]
+            Me.Time = time
         End Sub
+        Public Overrides Function ToString() As String
+            ' Format the output to ensure it fits within the width of the checklist box
+            Dim nameLengthLimit As Integer = 20 ' Limit for the length of the task name
+            Dim formattedName As String = If(Name.Length > nameLengthLimit, Name.Substring(0, nameLengthLimit) & "...", Name)
+
+            ' Combine the task name and additional information (date and time) using a separator
+            Return $"{formattedName} | Date: {Date1}, Time: {Time}"
+        End Function
     End Class
 
     Private Sub exitbtn_Click(sender As Object, e As EventArgs) Handles exitbtn.Click
@@ -108,4 +127,5 @@ Public Class Form1
             CType(sender, MaskedTextBox).Focus()
         End If
     End Sub
+
 End Class

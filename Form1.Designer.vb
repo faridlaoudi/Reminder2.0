@@ -63,7 +63,7 @@ Partial Class Form1
         ' 
         ' Delete
         ' 
-        Delete.Location = New Point(371, 378)
+        Delete.Location = New Point(413, 345)
         Delete.Name = "Delete"
         Delete.Size = New Size(119, 29)
         Delete.TabIndex = 5
@@ -103,7 +103,7 @@ Partial Class Form1
         checktask.FormattingEnabled = True
         checktask.Location = New Point(323, 81)
         checktask.Name = "checktask"
-        checktask.Size = New Size(205, 290)
+        checktask.Size = New Size(265, 246)
         checktask.TabIndex = 12
         ' 
         ' Add
@@ -129,7 +129,7 @@ Partial Class Form1
         ' exitbtn
         ' 
         exitbtn.BackColor = SystemColors.ActiveBorder
-        exitbtn.Location = New Point(497, 12)
+        exitbtn.Location = New Point(553, 12)
         exitbtn.Name = "exitbtn"
         exitbtn.Size = New Size(35, 29)
         exitbtn.TabIndex = 15
@@ -140,7 +140,7 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(544, 425)
+        ClientSize = New Size(600, 425)
         Controls.Add(exitbtn)
         Controls.Add(MaskedTextBoxTime)
         Controls.Add(Add)

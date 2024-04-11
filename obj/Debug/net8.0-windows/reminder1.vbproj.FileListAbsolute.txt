@@ -26,3 +26,4 @@ C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\reminder1.vb
 C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\reminder1.vbproj.Up2Date
 C:\Users\laoud\Documents\project\reminder1\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
 C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\reminder1.Resources.resources
+C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\reminder1.sourcelink.json
