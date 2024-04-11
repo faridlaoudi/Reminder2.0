@@ -138,7 +138,7 @@ Public Class Form1
             Dim formattedName As String = If(Name.Length > nameLengthLimit, Name.Substring(0, nameLengthLimit) & "...", Name)
 
             ' Combine the task name and additional information (date and time) using a separator
-            Return $"{formattedName} | Date: {Date1}, Time: {Time}"
+            Return $"{formattedName} | يوم: {Date1}, في : {Time}"
         End Function
     End Class
 
@@ -159,8 +159,9 @@ Public Class Form1
         For Each taskItem As TaskItem In checktask.Items
             Dim taskDateTime As DateTime = DateTime.ParseExact(taskItem.Date1 & " " & taskItem.Time, "dd/MM/yyyy HH:mm", Nothing)
             If currentTime = taskDateTime Then
-                MessageBox.Show($"It's time for task: {taskItem.Name}", "Task Notification", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show($"انه وقت : {taskItem.Name}", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Next
     End Sub
+
 End Class

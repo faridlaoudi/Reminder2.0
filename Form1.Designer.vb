@@ -40,20 +40,24 @@ Partial Class Form1
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(24, 170)
+        Label2.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.Location = New Point(204, 167)
         Label2.Name = "Label2"
-        Label2.Size = New Size(151, 20)
+        Label2.RightToLeft = RightToLeft.Yes
+        Label2.Size = New Size(100, 23)
         Label2.TabIndex = 1
-        Label2.Text = "When is the deadline:"
+        Label2.Text = "متى موعدها :"
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(25, 55)
+        Label3.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label3.Location = New Point(212, 56)
         Label3.Name = "Label3"
-        Label3.Size = New Size(128, 20)
+        Label3.RightToLeft = RightToLeft.Yes
+        Label3.Size = New Size(92, 23)
         Label3.TabIndex = 2
-        Label3.Text = "What is your task :"
+        Label3.Text = "اسم المهمة :"
         ' 
         ' TextBox1
         ' 
@@ -69,7 +73,7 @@ Partial Class Form1
         Delete.Name = "Delete"
         Delete.Size = New Size(119, 29)
         Delete.TabIndex = 5
-        Delete.Text = "Delete Tasks"
+        Delete.Text = "امسح المهمة"
         Delete.UseVisualStyleBackColor = True
         ' 
         ' MaskedTextBoxDate
@@ -94,17 +98,21 @@ Partial Class Form1
         ' mytasks
         ' 
         mytasks.AutoSize = True
-        mytasks.Location = New Point(323, 55)
+        mytasks.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        mytasks.Location = New Point(514, 55)
         mytasks.Name = "mytasks"
-        mytasks.Size = New Size(72, 20)
+        mytasks.RightToLeft = RightToLeft.Yes
+        mytasks.Size = New Size(74, 23)
         mytasks.TabIndex = 11
-        mytasks.Text = "My tasks :"
+        mytasks.Text = "مهماتي : "
+        mytasks.TextAlign = ContentAlignment.TopRight
         ' 
         ' checktask
         ' 
         checktask.FormattingEnabled = True
         checktask.Location = New Point(323, 81)
         checktask.Name = "checktask"
+        checktask.RightToLeft = RightToLeft.Yes
         checktask.Size = New Size(265, 246)
         checktask.TabIndex = 12
         ' 
@@ -114,7 +122,7 @@ Partial Class Form1
         Add.Name = "Add"
         Add.Size = New Size(128, 36)
         Add.TabIndex = 13
-        Add.Text = "Add"
+        Add.Text = "أضف"
         Add.UseVisualStyleBackColor = True
         ' 
         ' MaskedTextBoxTime
