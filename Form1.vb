@@ -50,18 +50,14 @@ Public Class Form1
 
     Private Sub CheckAndNotifyTasks()
         Dim currentTime As DateTime = DateTime.Now
-        Dim tasksToRemove As New List(Of TaskItem)()
 
         For Each taskItem As TaskItem In checktask.Items
             Dim taskDateTime As DateTime = DateTime.ParseExact(taskItem.Date1 & " " & taskItem.Time, "dd/MM/yyyy HH:mm", Nothing)
-            If currentTime >= taskDateTime Then
+            If currentTime >= taskDateTime And Not taskItem.IsChecked Then
                 MessageBox.Show($"It's time for task: {taskItem.Name}", "Task Notification", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                tasksToRemove.Add(taskItem)
+                ' Update the last notified time for the task
+                taskItem.LastNotified = currentTime
             End If
-        Next
-
-        For Each taskItem As TaskItem In tasksToRemove
-            checktask.Items.Remove(taskItem)
         Next
 
         SaveTasksToFile()
@@ -140,6 +136,7 @@ Public Class Form1
         Public Property Date1 As String
         Public Property Time As String
         Public Property Description As String
+        Public Property LastNotified As DateTime? = Nothing
 
         Public Sub New(name As String, isChecked As Boolean, [date] As String, time As String, Optional description As String = "")
             Me.Name = name
