@@ -2,7 +2,7 @@
 Imports Newtonsoft.Json
 
 Public Class Form1
-    Private WithEvents notificationTimer As New Timer()
+    Private WithEvents NotificationTimer As New Timer()
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -43,7 +43,7 @@ Public Class Form1
         Add.Enabled = isValidDate AndAlso isValidTime AndAlso isTaskNotEmpty
     End Sub
 
-    Private Sub notificationTimer_Tick(sender As Object, e As EventArgs) Handles notificationTimer.Tick
+    Private Sub NotificationTimer_Tick(sender As Object, e As EventArgs) Handles NotificationTimer.Tick
         ' Check tasks and display notifications periodically
         CheckAndNotifyTasks()
     End Sub
@@ -148,12 +148,13 @@ Public Class Form1
 
         Public Overrides Function ToString() As String
             Dim nameLengthLimit As Integer = 20
-            Dim formattedName As String = If(Name.Length > nameLengthLimit, Name.Substring(0, nameLengthLimit) & "...", Name)
+            Dim formattedName As String = If(Name.Length > nameLengthLimit, String.Concat(Name.AsSpan(0, nameLengthLimit), "..."), Name)
             Return $"{formattedName} | يوم: {Date1}, على : {Time}"
         End Function
+
     End Class
 
-    Private Sub exitbtn_Click(sender As Object, e As EventArgs) Handles exitbtn.Click
+    Private Sub Exitbtn_Click(sender As Object, e As EventArgs) Handles exitbtn.Click
         SaveTasksToFile()
         Application.Exit()
     End Sub
@@ -175,7 +176,8 @@ Public Class Form1
         Next
     End Sub
 
-    Private Sub checktask_SelectedIndexChanged(sender As Object, e As EventArgs) Handles checktask.SelectedIndexChanged
+
+    Private Sub Checktask_SelectedIndexChanged(sender As Object, e As EventArgs) Handles checktask.SelectedIndexChanged
         If checktask.SelectedIndex >= 0 Then
             Dim selectedTask As TaskItem = CType(checktask.SelectedItem, TaskItem)
             If selectedTask IsNot Nothing Then

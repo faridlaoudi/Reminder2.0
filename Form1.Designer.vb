@@ -204,6 +204,7 @@ Partial Class Form1
         Controls.Add(Label3)
         Controls.Add(Label2)
         FormBorderStyle = FormBorderStyle.None
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MinimizeBox = False
         Name = "Form1"
         StartPosition = FormStartPosition.CenterScreen

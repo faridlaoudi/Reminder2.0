@@ -16,7 +16,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("reminder1"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09b945d540adf8c996e2fe7365dc14f048b4a887"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aea51cc78d15046cb4326e8836ee8186fe714e2c"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("reminder1"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("reminder1"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _
