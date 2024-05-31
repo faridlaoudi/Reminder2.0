@@ -23,6 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Label2 = New Label()
         Label3 = New Label()
         TextBox1 = New TextBox()
@@ -35,13 +36,17 @@ Partial Class Form1
         MaskedTextBoxTime = New MaskedTextBox()
         exitbtn = New Button()
         Timer = New Timer(components)
+        TextBoxDescription = New TextBox()
+        Label1 = New Label()
+        PictureBox1 = New PictureBox()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(204, 167)
+        Label2.Location = New Point(548, 301)
         Label2.Name = "Label2"
         Label2.RightToLeft = RightToLeft.Yes
         Label2.Size = New Size(100, 23)
@@ -52,7 +57,7 @@ Partial Class Form1
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label3.Location = New Point(212, 56)
+        Label3.Location = New Point(556, 72)
         Label3.Name = "Label3"
         Label3.RightToLeft = RightToLeft.Yes
         Label3.Size = New Size(92, 23)
@@ -61,17 +66,17 @@ Partial Class Form1
         ' 
         ' TextBox1
         ' 
-        TextBox1.Location = New Point(24, 82)
+        TextBox1.Location = New Point(368, 98)
         TextBox1.Multiline = True
         TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(280, 78)
+        TextBox1.Size = New Size(280, 46)
         TextBox1.TabIndex = 4
         ' 
         ' Delete
         ' 
-        Delete.Location = New Point(413, 345)
+        Delete.Location = New Point(95, 391)
         Delete.Name = "Delete"
-        Delete.Size = New Size(119, 29)
+        Delete.Size = New Size(145, 45)
         Delete.TabIndex = 5
         Delete.Text = "امسح المهمة"
         Delete.UseVisualStyleBackColor = True
@@ -79,7 +84,7 @@ Partial Class Form1
         ' MaskedTextBoxDate
         ' 
         MaskedTextBoxDate.Font = New Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        MaskedTextBoxDate.Location = New Point(24, 193)
+        MaskedTextBoxDate.Location = New Point(368, 337)
         MaskedTextBoxDate.Mask = "00/00/0000"
         MaskedTextBoxDate.Name = "MaskedTextBoxDate"
         MaskedTextBoxDate.Size = New Size(203, 31)
@@ -99,7 +104,7 @@ Partial Class Form1
         ' 
         mytasks.AutoSize = True
         mytasks.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        mytasks.Location = New Point(514, 55)
+        mytasks.Location = New Point(282, 69)
         mytasks.Name = "mytasks"
         mytasks.RightToLeft = RightToLeft.Yes
         mytasks.Size = New Size(74, 23)
@@ -110,15 +115,15 @@ Partial Class Form1
         ' checktask
         ' 
         checktask.FormattingEnabled = True
-        checktask.Location = New Point(323, 81)
+        checktask.Location = New Point(12, 96)
         checktask.Name = "checktask"
         checktask.RightToLeft = RightToLeft.Yes
-        checktask.Size = New Size(265, 246)
+        checktask.Size = New Size(344, 290)
         checktask.TabIndex = 12
         ' 
         ' Add
         ' 
-        Add.Location = New Point(99, 242)
+        Add.Location = New Point(443, 391)
         Add.Name = "Add"
         Add.Size = New Size(128, 36)
         Add.TabIndex = 13
@@ -128,7 +133,7 @@ Partial Class Form1
         ' MaskedTextBoxTime
         ' 
         MaskedTextBoxTime.Font = New Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        MaskedTextBoxTime.Location = New Point(233, 193)
+        MaskedTextBoxTime.Location = New Point(577, 337)
         MaskedTextBoxTime.Mask = "00:00"
         MaskedTextBoxTime.Name = "MaskedTextBoxTime"
         MaskedTextBoxTime.Size = New Size(71, 31)
@@ -139,7 +144,7 @@ Partial Class Form1
         ' exitbtn
         ' 
         exitbtn.BackColor = SystemColors.ActiveBorder
-        exitbtn.Location = New Point(553, 12)
+        exitbtn.Location = New Point(617, 15)
         exitbtn.Name = "exitbtn"
         exitbtn.Size = New Size(35, 29)
         exitbtn.TabIndex = 15
@@ -150,11 +155,43 @@ Partial Class Form1
         ' 
         Timer.Interval = 60000
         ' 
+        ' TextBoxDescription
+        ' 
+        TextBoxDescription.Location = New Point(372, 199)
+        TextBoxDescription.Multiline = True
+        TextBoxDescription.Name = "TextBoxDescription"
+        TextBoxDescription.Size = New Size(280, 89)
+        TextBoxDescription.TabIndex = 17
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Location = New Point(459, 163)
+        Label1.Name = "Label1"
+        Label1.RightToLeft = RightToLeft.Yes
+        Label1.Size = New Size(189, 23)
+        Label1.TabIndex = 16
+        Label1.Text = "وصف للمهمة :  (اختياري) "
+        ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
+        PictureBox1.Location = New Point(12, 12)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(137, 67)
+        PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+        PictureBox1.TabIndex = 18
+        PictureBox1.TabStop = False
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(600, 425)
+        ClientSize = New Size(672, 471)
+        Controls.Add(PictureBox1)
+        Controls.Add(TextBoxDescription)
+        Controls.Add(Label1)
         Controls.Add(exitbtn)
         Controls.Add(MaskedTextBoxTime)
         Controls.Add(Add)
@@ -171,6 +208,7 @@ Partial Class Form1
         Name = "Form1"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Form1"
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -186,5 +224,8 @@ Partial Class Form1
     Friend WithEvents MaskedTextBoxTime As MaskedTextBox
     Friend WithEvents exitbtn As Button
     Friend WithEvents Timer As Timer
+    Friend WithEvents TextBoxDescription As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents PictureBox1 As PictureBox
 
 End Class

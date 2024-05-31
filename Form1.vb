@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 Imports Newtonsoft.Json
-Public Class Form1
 
+Public Class Form1
     Private WithEvents notificationTimer As New Timer()
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -33,7 +33,6 @@ Public Class Form1
         MaskedTextBoxTime.ValidatingType = GetType(System.DateTime) ' Note: This is for simplicity; actual time validation happens in ValidateInputs.
     End Sub
 
-
     Private Sub ValidateInputs()
         Dim dateValue As DateTime
         Dim isValidDate As Boolean = DateTime.TryParse(MaskedTextBoxDate.Text, dateValue)
@@ -51,34 +50,44 @@ Public Class Form1
 
     Private Sub CheckAndNotifyTasks()
         Dim currentTime As DateTime = DateTime.Now
+        Dim tasksToRemove As New List(Of TaskItem)()
+
         For Each taskItem As TaskItem In checktask.Items
             Dim taskDateTime As DateTime = DateTime.ParseExact(taskItem.Date1 & " " & taskItem.Time, "dd/MM/yyyy HH:mm", Nothing)
             If currentTime >= taskDateTime Then
                 MessageBox.Show($"It's time for task: {taskItem.Name}", "Task Notification", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                tasksToRemove.Add(taskItem)
             End If
         Next
+
+        For Each taskItem As TaskItem In tasksToRemove
+            checktask.Items.Remove(taskItem)
+        Next
+
+        SaveTasksToFile()
     End Sub
 
     Private Sub Input_Changed(sender As Object, e As EventArgs)
         ValidateInputs()
     End Sub
 
-
     Private Shadows Sub Add_Click(sender As Object, e As EventArgs) Handles Add.Click
         Dim taskName As String = TextBox1.Text.Trim()
         Dim taskDate As String = MaskedTextBoxDate.Text
         Dim taskTime As String = MaskedTextBoxTime.Text
+        Dim taskDescription As String = TextBoxDescription.Text.Trim()
 
         ' Since Add button is enabled only when inputs are valid, directly add the task.
         If Not String.IsNullOrEmpty(taskName) Then
-            ' Add the new task with date and time
-            Dim newTask As New TaskItem(taskName, False, taskDate, taskTime)
+            ' Add the new task with date, time, and description
+            Dim newTask As New TaskItem(taskName, False, taskDate, taskTime, taskDescription)
             ' Check if a similar task already exists (based on Name, Date, and Time)
             Dim taskExists As Boolean = checktask.Items.Cast(Of TaskItem)().Any(Function(item) item.Name = newTask.Name AndAlso item.Date1 = newTask.Date1 AndAlso item.Time = newTask.Time)
 
             If Not taskExists Then
                 checktask.Items.Add(newTask, False)
                 TextBox1.Clear()
+                TextBoxDescription.Clear()
                 SaveTasksToFile()
             Else
                 MessageBox.Show("This task with the same date and time has already been added.", "Duplicate Task", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -87,6 +96,7 @@ Public Class Form1
             MessageBox.Show("Please enter a task.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
+
     Private Sub SaveTasksToFile()
         Dim tasksList As New List(Of TaskItem)
         For Each item As TaskItem In checktask.Items
@@ -102,22 +112,26 @@ Public Class Form1
             Dim tasksJson As String = File.ReadAllText("tasks.json")
             Dim tasksList As List(Of TaskItem) = JsonConvert.DeserializeObject(Of List(Of TaskItem))(tasksJson)
 
-            checktask.Items.Clear() ' Clear existing items before loading new ones
-            For Each taskItem As TaskItem In tasksList
+            checktask.Items.Clear()
+
+            ' Sort tasks by date and time
+            Dim sortedTasks = tasksList.Where(Function(task) DateTime.ParseExact(task.Date1 & " " & task.Time, "dd/MM/yyyy HH:mm", Nothing) > DateTime.Now) _
+                                       .OrderBy(Function(task) DateTime.ParseExact(task.Date1 & " " & task.Time, "dd/MM/yyyy HH:mm", Nothing))
+
+            For Each taskItem As TaskItem In sortedTasks
                 checktask.Items.Add(taskItem, taskItem.IsChecked)
             Next
         End If
     End Sub
 
     Private Sub Delete_Click(sender As Object, e As EventArgs) Handles Delete.Click
-        ' Looping in reverse order to avoid skipping items due to removal shifting indices
         For i As Integer = checktask.Items.Count - 1 To 0 Step -1
-            If checktask.GetItemChecked(i) Then ' If the item is checked (or selected, based on your UI)
-                checktask.Items.RemoveAt(i) ' Remove the item
+            If checktask.GetItemChecked(i) Then
+                checktask.Items.RemoveAt(i)
             End If
         Next
 
-        SaveTasksToFile() ' Save the updated list of tasks to file
+        SaveTasksToFile()
     End Sub
 
     Public Class TaskItem
@@ -125,20 +139,20 @@ Public Class Form1
         Public Property IsChecked As Boolean
         Public Property Date1 As String
         Public Property Time As String
+        Public Property Description As String
 
-        Public Sub New(name As String, isChecked As Boolean, [date] As String, time As String)
+        Public Sub New(name As String, isChecked As Boolean, [date] As String, time As String, Optional description As String = "")
             Me.Name = name
             Me.IsChecked = isChecked
             Me.Date1 = [date]
             Me.Time = time
+            Me.Description = description
         End Sub
-        Public Overrides Function ToString() As String
-            ' Format the output to ensure it fits within the width of the checklist box
-            Dim nameLengthLimit As Integer = 20 ' Limit for the length of the task name
-            Dim formattedName As String = If(Name.Length > nameLengthLimit, Name.Substring(0, nameLengthLimit) & "...", Name)
 
-            ' Combine the task name and additional information (date and time) using a separator
-            Return $"{formattedName} | يوم: {Date1}, في : {Time}"
+        Public Overrides Function ToString() As String
+            Dim nameLengthLimit As Integer = 20
+            Dim formattedName As String = If(Name.Length > nameLengthLimit, Name.Substring(0, nameLengthLimit) & "...", Name)
+            Return $"{formattedName} | يوم: {Date1}, على : {Time}"
         End Function
     End Class
 
@@ -164,4 +178,12 @@ Public Class Form1
         Next
     End Sub
 
+    Private Sub checktask_SelectedIndexChanged(sender As Object, e As EventArgs) Handles checktask.SelectedIndexChanged
+        If checktask.SelectedIndex >= 0 Then
+            Dim selectedTask As TaskItem = CType(checktask.SelectedItem, TaskItem)
+            If selectedTask IsNot Nothing Then
+                MessageBox.Show(selectedTask.Description, "Task Description", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        End If
+    End Sub
 End Class
