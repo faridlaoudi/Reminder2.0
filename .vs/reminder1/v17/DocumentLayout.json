@@ -37,19 +37,6 @@
               "EditorCaption": " [Design]"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "tasks.json",
-              "DocumentMoniker": "C:\\Users\\laoud\\Documents\\tasks.json",
-              "RelativeDocumentMoniker": "..\\..\\tasks.json",
-              "ToolTip": "C:\\Users\\laoud\\Documents\\tasks.json",
-              "RelativeToolTip": "..\\..\\tasks.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-06-08T11:15:42.466Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Bookmark",
               "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
@@ -63,13 +50,26 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "tasks.json",
+              "DocumentMoniker": "C:\\Users\\laoud\\Documents\\tasks.json",
+              "RelativeDocumentMoniker": "..\\..\\tasks.json",
+              "ToolTip": "C:\\Users\\laoud\\Documents\\tasks.json",
+              "RelativeToolTip": "..\\..\\tasks.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-08T11:15:42.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Form1.vb",
               "DocumentMoniker": "C:\\Users\\laoud\\Documents\\project\\reminder1\\Form1.vb",
               "RelativeDocumentMoniker": "Form1.vb",
               "ToolTip": "C:\\Users\\laoud\\Documents\\project\\reminder1\\Form1.vb",
               "RelativeToolTip": "Form1.vb",
-              "ViewState": "AQIAADsAAAAAAAAAAAAgwEgAAAAqAAAA",
+              "ViewState": "AQIAAJgAAAAAAAAAAAAkwLEAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-05-31T12:16:22.948Z",
               "EditorCaption": ""

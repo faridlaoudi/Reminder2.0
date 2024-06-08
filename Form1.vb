@@ -99,14 +99,15 @@ Public Class Form1
 
         For Each taskItem As TaskItem In checktask.Items
             Dim taskDateTime As DateTime = DateTime.ParseExact(taskItem.Date1 & " " & taskItem.Time, "dd/MM/yyyy HH:mm", Nothing)
-            If currentTime >= taskDateTime And Not taskItem.IsChecked Then
+            If currentTime >= taskDateTime And Not taskItem.Notified Then
                 MessageBox.Show($"It's time for task: {taskItem.Name}", "Task Notification", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ' Update the last notified time for the task
                 taskItem.LastNotified = currentTime
+                taskItem.Notified = True
             End If
         Next
         SaveTasksToFile()
     End Sub
+
 
     Private Sub Input_Changed(sender As Object, e As EventArgs)
         ValidateInputs()
@@ -138,22 +139,27 @@ Public Class Form1
         End If
     End Sub
     Private Sub SaveTasksToFile()
-        Dim tasksList As New List(Of TaskItem)
-        For Each item As TaskItem In checktask.Items
-            tasksList.Add(item)
-        Next
+        Try
+            Dim tasksList As New List(Of TaskItem)
+            For Each item As TaskItem In checktask.Items
+                tasksList.Add(item)
+            Next
 
-        Dim tasksJson As String = JsonConvert.SerializeObject(tasksList)
+            Dim tasksJson As String = JsonConvert.SerializeObject(tasksList, Formatting.Indented)
 
-        ' Get the path to the user's Documents folder
-        Dim documentsPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            ' Get the path to the user's Documents folder
+            Dim documentsPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
 
-        ' Combine the path with the filename "tasks.json"
-        Dim filePath As String = Path.Combine(documentsPath, "tasks.json")
+            ' Combine the path with the filename "tasks.json"
+            Dim filePath As String = Path.Combine(documentsPath, "tasks.json")
 
-        ' Write the tasks data to the file
-        File.WriteAllText(filePath, tasksJson)
+            ' Write the tasks data to the file
+            File.WriteAllText(filePath, tasksJson)
+        Catch ex As Exception
+            MessageBox.Show($"Error saving tasks: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
+
     Private Sub LoadTasksFromFile()
         Try
             Dim documentsPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
@@ -166,7 +172,7 @@ Public Class Form1
                 If tasksList IsNot Nothing Then
                     checktask.Items.Clear()
 
-                    Dim sortedTasks = tasksList.Where(Function(task) DateTime.ParseExact(task.Date1 & " " & task.Time, "dd/MM/yyyy HH:mm", Nothing) > DateTime.Now) _
+                    Dim sortedTasks = tasksList.Where(Function(task) DateTime.ParseExact(task.Date1 & " " & task.Time, "dd/MM/yyyy HH:mm", Nothing) > DateTime.Now OrElse task.Notified) _
                                            .OrderBy(Function(task) DateTime.ParseExact(task.Date1 & " " & task.Time, "dd/MM/yyyy HH:mm", Nothing))
 
                     For Each taskItem As TaskItem In sortedTasks
@@ -180,6 +186,8 @@ Public Class Form1
             MessageBox.Show($"Error loading tasks: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+
     Private Sub Delete_Click(sender As Object, e As EventArgs) Handles Delete.Click
         For i As Integer = checktask.Items.Count - 1 To 0 Step -1
             If checktask.GetItemChecked(i) Then
@@ -197,6 +205,7 @@ Public Class Form1
         Public Property Time As String
         Public Property Description As String
         Public Property LastNotified As DateTime? = Nothing
+        Public Property Notified As Boolean = False ' New property to track if the task has been notified
 
         Public Sub New(name As String, isChecked As Boolean, [date] As String, time As String, Optional description As String = "")
             Me.Name = name
@@ -211,7 +220,6 @@ Public Class Form1
             Dim formattedName As String = If(Name.Length > nameLengthLimit, String.Concat(Name.AsSpan(0, nameLengthLimit), "..."), Name)
             Return $"{formattedName} | يوم: {Date1}, على : {Time}"
         End Function
-
     End Class
 
     Private Sub MaskedTextBox_ValidationCompleted(sender As Object, e As TypeValidationEventArgs)
