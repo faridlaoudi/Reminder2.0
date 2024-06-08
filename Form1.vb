@@ -1,11 +1,15 @@
 ﻿Imports System.IO
 Imports Newtonsoft.Json
+Imports System.Windows.Forms
 
 Public Class Form1
     Private WithEvents NotificationTimer As New Timer()
+    Private WithEvents TrayIcon As New NotifyIcon()
+    Private WithEvents TrayMenu As New ContextMenuStrip()
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
+            AddToStartup()
             LoadTasksFromFile()
             ConfigureMaskedTextBoxes()
             AddHandler TextBox1.TextChanged, AddressOf Input_Changed
@@ -13,9 +17,17 @@ Public Class Form1
             AddHandler MaskedTextBoxTime.TextChanged, AddressOf Input_Changed
             ValidateInputs()
 
+            ' Configure Tray Icon
+            TrayIcon.Icon = SystemIcons.Application
+            TrayIcon.Text = "Task Reminder"
+            TrayMenu.Items.Add("Open", Nothing, AddressOf RestoreFromTray)
+            TrayMenu.Items.Add("Exit", Nothing, AddressOf ExitApplication)
+            TrayIcon.ContextMenuStrip = TrayMenu
+            TrayIcon.Visible = True
+
             ' Start the timer
-            notificationTimer.Interval = 60000 ' 1 minute
-            notificationTimer.Start()
+            NotificationTimer.Interval = 60000 ' 1 minute
+            NotificationTimer.Start()
 
             ' Check tasks and display notifications when the form loads
             CheckAndNotifyTasks()
@@ -24,6 +36,40 @@ Public Class Form1
         End Try
     End Sub
 
+    Private Sub AddToStartup()
+        Try
+            Dim startupFolderPath As String = Environment.GetFolderPath(Environment.SpecialFolder.Startup)
+            Dim shortcutPath As String = Path.Combine(startupFolderPath, "TaskReminderApp.lnk")
+
+            If Not IO.File.Exists(shortcutPath) Then
+                Dim shell = CreateObject("WScript.Shell")
+                Dim shortcut = shell.CreateShortcut(shortcutPath)
+                shortcut.TargetPath = Application.ExecutablePath
+                shortcut.WorkingDirectory = Application.StartupPath
+                shortcut.Save()
+            End If
+        Catch ex As Exception
+            MessageBox.Show($"Failed to add to startup: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub Form1_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        If WindowState = FormWindowState.Minimized Then
+            Hide()
+            TrayIcon.Visible = True
+        End If
+    End Sub
+
+    Private Sub RestoreFromTray(sender As Object, e As EventArgs)
+        Show()
+        WindowState = FormWindowState.Normal
+        TrayIcon.Visible = False
+    End Sub
+
+    Private Sub ExitApplication(sender As Object, e As EventArgs) Handles exitbtn.Click
+        SaveTasksToFile()
+        Application.Exit()
+    End Sub
     Private Sub ConfigureMaskedTextBoxes()
         ' Date configuration
         MaskedTextBoxDate.Mask = "00/00/0000"
@@ -59,7 +105,6 @@ Public Class Form1
                 taskItem.LastNotified = currentTime
             End If
         Next
-
         SaveTasksToFile()
     End Sub
 
@@ -92,7 +137,6 @@ Public Class Form1
             MessageBox.Show("Please enter a task.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
-
     Private Sub SaveTasksToFile()
         Dim tasksList As New List(Of TaskItem)
         For Each item As TaskItem In checktask.Items
@@ -100,26 +144,42 @@ Public Class Form1
         Next
 
         Dim tasksJson As String = JsonConvert.SerializeObject(tasksList)
-        File.WriteAllText("tasks.json", tasksJson)
-    End Sub
 
+        ' Get the path to the user's Documents folder
+        Dim documentsPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+
+        ' Combine the path with the filename "tasks.json"
+        Dim filePath As String = Path.Combine(documentsPath, "tasks.json")
+
+        ' Write the tasks data to the file
+        File.WriteAllText(filePath, tasksJson)
+    End Sub
     Private Sub LoadTasksFromFile()
-        If File.Exists("tasks.json") Then
-            Dim tasksJson As String = File.ReadAllText("tasks.json")
-            Dim tasksList As List(Of TaskItem) = JsonConvert.DeserializeObject(Of List(Of TaskItem))(tasksJson)
+        Try
+            Dim documentsPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            Dim filePath As String = Path.Combine(documentsPath, "tasks.json")
 
-            checktask.Items.Clear()
+            If File.Exists(filePath) Then
+                Dim tasksJson As String = File.ReadAllText(filePath)
+                Dim tasksList As List(Of TaskItem) = JsonConvert.DeserializeObject(Of List(Of TaskItem))(tasksJson)
 
-            ' Sort tasks by date and time
-            Dim sortedTasks = tasksList.Where(Function(task) DateTime.ParseExact(task.Date1 & " " & task.Time, "dd/MM/yyyy HH:mm", Nothing) > DateTime.Now) _
-                                       .OrderBy(Function(task) DateTime.ParseExact(task.Date1 & " " & task.Time, "dd/MM/yyyy HH:mm", Nothing))
+                If tasksList IsNot Nothing Then
+                    checktask.Items.Clear()
 
-            For Each taskItem As TaskItem In sortedTasks
-                checktask.Items.Add(taskItem, taskItem.IsChecked)
-            Next
-        End If
+                    Dim sortedTasks = tasksList.Where(Function(task) DateTime.ParseExact(task.Date1 & " " & task.Time, "dd/MM/yyyy HH:mm", Nothing) > DateTime.Now) _
+                                           .OrderBy(Function(task) DateTime.ParseExact(task.Date1 & " " & task.Time, "dd/MM/yyyy HH:mm", Nothing))
+
+                    For Each taskItem As TaskItem In sortedTasks
+                        checktask.Items.Add(taskItem, taskItem.IsChecked)
+                    Next
+                Else
+                    MessageBox.Show("Failed to load tasks from file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show($"Error loading tasks: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
-
     Private Sub Delete_Click(sender As Object, e As EventArgs) Handles Delete.Click
         For i As Integer = checktask.Items.Count - 1 To 0 Step -1
             If checktask.GetItemChecked(i) Then
@@ -153,11 +213,6 @@ Public Class Form1
         End Function
 
     End Class
-
-    Private Sub Exitbtn_Click(sender As Object, e As EventArgs) Handles exitbtn.Click
-        SaveTasksToFile()
-        Application.Exit()
-    End Sub
 
     Private Sub MaskedTextBox_ValidationCompleted(sender As Object, e As TypeValidationEventArgs)
         If Not e.IsValidInput Then
