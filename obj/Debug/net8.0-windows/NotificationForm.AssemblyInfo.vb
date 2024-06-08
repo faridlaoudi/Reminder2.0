@@ -13,12 +13,12 @@ Option Explicit On
 
 Imports System
 Imports System.Reflection
-<Assembly: System.Reflection.AssemblyCompanyAttribute("reminder1"),  _
+<Assembly: System.Reflection.AssemblyCompanyAttribute("NotificationForm"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
  Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca5371b2e538fb96aa5b2df2f08556fe3fc1458c"),  _
- Assembly: System.Reflection.AssemblyProductAttribute("reminder1"),  _
- Assembly: System.Reflection.AssemblyTitleAttribute("reminder1"),  _
+ Assembly: System.Reflection.AssemblyProductAttribute("NotificationForm"),  _
+ Assembly: System.Reflection.AssemblyTitleAttribute("NotificationForm"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _
  Assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0"),  _
  Assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")> 

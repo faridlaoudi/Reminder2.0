@@ -1,0 +1,10 @@
+C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\NotificationForm.vbproj.AssemblyReference.cache
+C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\NotificationForm.CustomCalendar.resources
+C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\NotificationForm.Form1.resources
+C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\NotificationForm.Resources.resources
+C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\NotificationForm.vbproj.GenerateResource.cache
+C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\NotificationForm.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\NotificationForm.AssemblyInfoInputs.cache
+C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\NotificationForm.AssemblyInfo.vb
+C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\NotificationForm.vbproj.CoreCompileInputs.cache
+C:\Users\laoud\Documents\project\reminder1\obj\Debug\net8.0-windows\NotificationForm.sourcelink.json

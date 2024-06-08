@@ -7,15 +7,27 @@
       "RelativeMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|solutionrelative:form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|c:\\users\\laoud\\documents\\project\\reminder1\\notificationform.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|solutionrelative:notificationform.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|C:\\Users\\laoud\\Documents\\project\\reminder1\\Form1.Designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|solutionrelative:Form1.Designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|c:\\users\\laoud\\documents\\project\\reminder1\\notificationform.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|c:\\users\\laoud\\documents\\project\\reminder1\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|solutionrelative:form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|C:\\Users\\laoud\\Documents\\project\\reminder1\\notificationform.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|solutionrelative:notificationform.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|c:\\users\\laoud\\documents\\project\\reminder1\\notificationform.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|solutionrelative:notificationform.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\laoud\\Documents\\tasks.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|C:\\Users\\laoud\\Documents\\project\\reminder1\\reminder1.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{24BF96B3-F879-4D3A-9B12-DE0B629F58BA}|reminder1.vbproj|solutionrelative:reminder1.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,41 +53,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NotificationForm.Designer.vb",
-              "DocumentMoniker": "C:\\Users\\laoud\\Documents\\project\\reminder1\\NotificationForm.Designer.vb",
-              "RelativeDocumentMoniker": "NotificationForm.Designer.vb",
-              "ToolTip": "C:\\Users\\laoud\\Documents\\project\\reminder1\\NotificationForm.Designer.vb",
-              "RelativeToolTip": "NotificationForm.Designer.vb",
-              "ViewState": "AQIAAC4AAAAAAAAAAAAiwEsAAAAAAAAA",
+              "DocumentIndex": 2,
+              "Title": "Form1.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\laoud\\Documents\\project\\reminder1\\Form1.vb",
+              "RelativeDocumentMoniker": "Form1.vb",
+              "ToolTip": "C:\\Users\\laoud\\Documents\\project\\reminder1\\Form1.vb [Design]",
+              "RelativeToolTip": "Form1.vb [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-06-08T13:27:41.253Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-08T15:08:33.618Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NotificationForm.vb",
-              "DocumentMoniker": "C:\\Users\\laoud\\Documents\\project\\reminder1\\NotificationForm.vb",
-              "RelativeDocumentMoniker": "NotificationForm.vb",
-              "ToolTip": "C:\\Users\\laoud\\Documents\\project\\reminder1\\NotificationForm.vb",
-              "RelativeToolTip": "NotificationForm.vb",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAIwB0AAAAAAAAA",
+              "DocumentIndex": 1,
+              "Title": "Form1.Designer.vb",
+              "DocumentMoniker": "C:\\Users\\laoud\\Documents\\project\\reminder1\\Form1.Designer.vb",
+              "RelativeDocumentMoniker": "Form1.Designer.vb",
+              "ToolTip": "C:\\Users\\laoud\\Documents\\project\\reminder1\\Form1.Designer.vb",
+              "RelativeToolTip": "Form1.Designer.vb",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAAwHMAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-06-08T13:20:09.594Z",
+              "WhenOpened": "2024-06-08T15:04:37.672Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "tasks.json",
-              "DocumentMoniker": "C:\\Users\\laoud\\Documents\\tasks.json",
-              "RelativeDocumentMoniker": "..\\..\\tasks.json",
-              "ToolTip": "C:\\Users\\laoud\\Documents\\tasks.json",
-              "RelativeToolTip": "..\\..\\tasks.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADcAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-06-08T11:15:42.466Z",
+              "Title": "NotificationForm.vb",
+              "DocumentMoniker": "C:\\Users\\laoud\\Documents\\project\\reminder1\\NotificationForm.vb",
+              "RelativeDocumentMoniker": "NotificationForm.vb",
+              "ToolTip": "C:\\Users\\laoud\\Documents\\project\\reminder1\\NotificationForm.vb",
+              "RelativeToolTip": "NotificationForm.vb",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAwBIAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-06-08T13:20:09.594Z",
               "EditorCaption": ""
             },
             {
@@ -86,10 +97,45 @@
               "RelativeDocumentMoniker": "Form1.vb",
               "ToolTip": "C:\\Users\\laoud\\Documents\\project\\reminder1\\Form1.vb",
               "RelativeToolTip": "Form1.vb",
-              "ViewState": "AQIAAIcAAAAAAAAAAAAiwJ8AAAAAAAAA",
+              "ViewState": "AQIAANwAAAAAAAAAAAAUwOsAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-05-31T12:16:22.948Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NotificationForm.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\laoud\\Documents\\project\\reminder1\\NotificationForm.vb",
+              "RelativeDocumentMoniker": "NotificationForm.vb",
+              "ToolTip": "C:\\Users\\laoud\\Documents\\project\\reminder1\\NotificationForm.vb [Design]",
+              "RelativeToolTip": "NotificationForm.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-06-08T15:08:46.899Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "tasks.json",
+              "DocumentMoniker": "C:\\Users\\laoud\\Documents\\tasks.json",
+              "RelativeDocumentMoniker": "..\\..\\tasks.json",
+              "ToolTip": "C:\\Users\\laoud\\Documents\\tasks.json",
+              "RelativeToolTip": "..\\..\\tasks.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAACgAwAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-08T11:15:42.466Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "reminder1",
+              "DocumentMoniker": "C:\\Users\\laoud\\Documents\\project\\reminder1\\reminder1.vbproj",
+              "RelativeDocumentMoniker": "reminder1.vbproj",
+              "ToolTip": "C:\\Users\\laoud\\Documents\\project\\reminder1\\reminder1.vbproj",
+              "RelativeToolTip": "reminder1.vbproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003380|",
+              "WhenOpened": "2024-06-08T14:54:01.294Z"
             }
           ]
         }
